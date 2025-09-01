@@ -21,12 +21,12 @@ public class UserService {
         try {
             for (User u : users) {
                 if (u.getEmail().equals(email)) {
-                    throw new EmailAlreadyExistsException("Error: El email ya existe.");
+                    throw new EmailAlreadyExistsException("I´m:The email already exists.");
                 }
             }
 
             if (password.length() < 8) {
-                throw new InvalidPasswordException("Error: La contraseña debe tener al menos 8 caracteres.");
+                throw new InvalidPasswordException("I´m sorry : the password must be at least 8 characters.");
             }
 
             boolean mayus = false;
@@ -76,7 +76,7 @@ public class UserService {
                     System.out.println("successful login!!!.");
                     return u;
                 } else {
-                    System.out.println("I´m sorry password incorrect.");
+                    System.out.println("I´m sorry dates incorrect.");
                     return null;
                 }
             }

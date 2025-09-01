@@ -1,23 +1,23 @@
 package com.fitness.model;
 
-public class User {
+public abstract class User {
     private  String firstName;
     private  String lastName;
     private  String email;
     private  String password;
 
-    public User(String firtsName, String lastName, String email, String password) {
-        this.firstName = firtsName;
+    public User(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
 
     }
-    public String getFirtsName() {
+    public String getFirstName() {
         return firstName;
     }
-    public void setFirtsName(String firtsName) {
-        this.firstName = firtsName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
     public String getLastName() {
         return lastName;
@@ -41,7 +41,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "firstName='" + getFirtsName() + '\'' +
+                "firstName='" + getFirstName()  + '\'' +
                 ", lastName='" + getLastName() + '\'' +
                 ", email='" + getEmail() + '\'' +
                 ", password='" + getPassword() + '\'' +

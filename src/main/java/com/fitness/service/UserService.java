@@ -5,8 +5,6 @@ import com.fitness.exceptions.InvalidPasswordException;
 import com.fitness.model.RegularUser;
 import com.fitness.model.User;
 import com.fitness.model.Admin;
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,11 +79,9 @@ public class UserService {
                 }
             }
         }
-        System.out.println("I´m sorry password incorrect.");
+        System.out.println("I´m sorry Email or Password is incorrect.");
         return null;
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
+
 }

@@ -5,7 +5,6 @@ import com.fitness.model.WorkoutLog;
 import com.fitness.model.Exercise;
 import com.fitness.model.User;
 import com.fitness.model.Admin;
-
 import java.time.LocalDate;
 import java.util.*;
 
@@ -15,7 +14,7 @@ public class WorkoutService {
     private List<WorkoutLog> workoutLogs = new ArrayList<>();
 
     public WorkoutService(List<Exercise> defaultExercises) {
-        // Default workouts with concise descriptions
+
         Workout cardio = new Workout("Cardio Blast", "Increase stamina and endurance");
         cardio.getExercises().add(defaultExercises.get(0));
         cardio.getExercises().add(defaultExercises.get(3));
@@ -57,35 +56,36 @@ public class WorkoutService {
     }
     public void listLogs() {
         if (workoutLogs.isEmpty()) {
-            System.out.println("No hay logs.");
+            System.out.println("No logs available.");
             return;
         }
-
 
         List<WorkoutLog> sortedLogs = new ArrayList<>(workoutLogs);
         sortedLogs.sort(Comparator.comparing(WorkoutLog::getDate).reversed());
 
-        System.out.println("Historial de entrenamientos:");
+        System.out.println("Workout History:");
         for (int i = 0; i < sortedLogs.size(); i++) {
             WorkoutLog log = sortedLogs.get(i);
-            System.out.println((i + 1) + ". Fecha: " + log.getDate() + " | Workout: " + log.getWorkout().getName());
+            System.out.println((i + 1) + ". Date: " + log.getDate() + " | Workout: " + log.getWorkout().getName());
         }
 
-        System.out.println("Ingresa el número del entrenamiento para ver detalles, o 0 para volver:");
+        System.out.println("Enter the workout number to see details, or 0 to go back:");
         Scanner sc = new Scanner(System.in);
         int choice = sc.nextInt();
         sc.nextLine();
 
         if (choice > 0 && choice <= sortedLogs.size()) {
             WorkoutLog selectedLog = sortedLogs.get(choice - 1);
-            System.out.println("Detalles del entrenamiento:");
+            System.out.println("Workout Details:");
             System.out.println("Workout: " + selectedLog.getWorkout().getName());
-            System.out.println("Fecha: " + selectedLog.getDate());
+            System.out.println("Date: " + selectedLog.getDate());
             selectedLog.getExerciseTime().forEach((exercise, time) ->
-                    System.out.println("- " + exercise + ": " + time + " minutos")
+                    System.out.println("- " + exercise + ": " + time + " minutes")
             );
         }
     }
+
+
 
 
     public void addWorkout(Workout workout, User user) {
@@ -110,12 +110,10 @@ public class WorkoutService {
         }
     }
 
-    // Getters
+
     public List<Workout> getWorkouts() {
         return workouts;
     }
 
-    public List<WorkoutLog> getWorkoutLogs() {
-        return workoutLogs;
-    }
+
 }

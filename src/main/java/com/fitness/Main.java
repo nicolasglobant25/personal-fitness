@@ -18,9 +18,9 @@ public class Main {
 
         User user = null;
 
-        System.out.println("Welcome");
+        System.out.println("\nWelcome");
         while (true) {
-            // Login or registration
+
             System.out.println("\n1. Register\n2. Log in");
             String op = sc.nextLine();
             if (op.equals("1")) {

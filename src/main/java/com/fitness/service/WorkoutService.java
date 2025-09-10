@@ -40,15 +40,6 @@ public class WorkoutService {
     }
 
 
-    public void logWorkout(User user, Workout workout, List<Integer> times) {
-        WorkoutLog log = new WorkoutLog(LocalDate.now(), workout);
-        for (int i = 0; i < workout.getExercises().size(); i++) {
-            log.getExerciseTime().put(workout.getExercises().get(i).getName(), times.get(i));
-        }
-        workoutLogs.add(log);
-    }
-
-
     public void logWorkout(User user, Workout workout, int totalTime) {
         WorkoutLog log = new WorkoutLog(LocalDate.now(), workout);
         log.getExerciseTime().put("Total", totalTime);
@@ -84,7 +75,6 @@ public class WorkoutService {
             );
         }
     }
-
 
 
 

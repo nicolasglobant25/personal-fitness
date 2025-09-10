@@ -17,42 +17,28 @@ public class UserService {
 
     public boolean register(String firstName, String lastName, String email, String password) {
         try {
-            for (User u : users) {
-                if (u.getEmail().equals(email)) {
-                    throw new EmailAlreadyExistsException("I´m:The email already exists.");
-                }
+            boolean emailExists = users.stream().anyMatch(u -> u.getEmail().equals(email));
+            if (emailExists) {
+                throw new EmailAlreadyExistsException("I´m sorry the email already exists!");
             }
+
 
             if (password.length() < 8) {
                 throw new InvalidPasswordException("I´m sorry : the password must be at least 8 characters.");
             }
 
-            boolean mayus = false;
-            for (char c : password.toCharArray()) {
-                if (c >= 'A' && c <= 'Z') {
-                    mayus = true;
-                }
-            }
+
+            boolean mayus = password.chars().anyMatch(c -> c>= 'A' && c <= 'Z');
             if (!mayus) {
                 throw new InvalidPasswordException("I´m sorry :The password must have at least one mayus letter");
             }
 
-            boolean minus = false;
-            for (char c : password.toCharArray()) {
-                if (c >= 'a' && c <= 'z') {
-                    minus = true;
-                }
-            }
+            boolean minus = password.chars().anyMatch(c -> c >= 'a' && c <= 'z');
             if (!minus) {
                 throw new InvalidPasswordException("I´m sorry The password must have at least one minus letter.");
             }
 
-            boolean number= false;
-            for (char c : password.toCharArray()) {
-                if (c >= '0' && c <= '9') {
-                    number = true;
-                }
-            }
+            boolean number = password.chars().anyMatch(c -> c >= '0' && c <= '9');
             if (!number) {
                 throw new InvalidPasswordException("I´m sorry :The password must have at least one number.");
             }

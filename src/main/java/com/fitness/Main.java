@@ -1,26 +1,18 @@
 package com.fitness;
 
-import com.fitness.model.Admin;
-import com.fitness.model.User;
+
 import com.fitness.service.*;
+import com.fitness.view.Menu;
 
 public class Main {
     public static void main(String[] args) {
         UserService userService = new UserService();
         ExerciseService exerciseService = new ExerciseService();
         WorkoutService workoutService = new WorkoutService(exerciseService.getExercises());
-        MenuService menuService = new MenuService(userService, exerciseService, workoutService);
+        Menu menu = new Menu(userService,exerciseService,workoutService);
 
-        System.out.println("\nWelcome");
+        menu.startMenu();
 
-        while(true){
-            User user = menuService.showLoginRegisterMenu();
 
-            if(user instanceof Admin){
-                menuService.showAdminMenu((Admin)user);
-            } else {
-                menuService.showUserMenu(user);
-            }
-        }
     }
 }

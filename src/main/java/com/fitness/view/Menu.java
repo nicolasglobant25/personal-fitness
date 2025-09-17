@@ -1,24 +1,39 @@
-package com.fitness.service;
+package com.fitness.view;
 
 import com.fitness.model.Admin;
 import com.fitness.model.User;
 import com.fitness.model.Exercise;
 import com.fitness.model.Workout;
+import com.fitness.service.ExerciseService;
+import com.fitness.service.UserService;
+import com.fitness.service.WorkoutService;
 
 import java.util.Scanner;
 
-public class MenuService {
+public class Menu {
 
     private UserService userService;
     private ExerciseService exerciseService;
     private WorkoutService workoutService;
     private Scanner sc;
 
-    public MenuService(UserService userService, ExerciseService exerciseService, WorkoutService workoutService) {
+    public Menu(UserService userService, ExerciseService exerciseService, WorkoutService workoutService) {
         this.userService = userService;
         this.exerciseService = exerciseService;
         this.workoutService = workoutService;
         this.sc = new Scanner(System.in);
+    }
+
+    public void startMenu(){
+        System.out.println("\nWelcome");
+        while(true){
+            User user = showLoginRegisterMenu();
+            if (user instanceof Admin) {
+                showAdminMenu((Admin) user);
+            }else if(user instanceof User){
+                showUserMenu(user);
+            }
+        }
     }
 
     public User showLoginRegisterMenu(){
